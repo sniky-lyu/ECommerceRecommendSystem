@@ -5,3 +5,7 @@
 /recommender/offlineRecommender/target/
 /recommender/OnlineRecommender/target/
 /recommender/StatisticsRecommender/target/
+
+*.csv
+*.class
+*/target/*
