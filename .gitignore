@@ -1,0 +1,7 @@
+# Project exclude paths
+/businessServer/target/
+/recommender/DataLoader/target/
+/recommender/KafkaStreaming/target/
+/recommender/offlineRecommender/target/
+/recommender/OnlineRecommender/target/
+/recommender/StatisticsRecommender/target/
