@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="Maven 1" modules="ContentRecommender,DataLoader,ItemCFRecommender,OnlineRecommender,StatisticsRecommender,offlineRecommender" />
+    <profile name="Maven 1" modules="ALSOptimization,ContentRecommender,DataLoader,ItemCFRecommender,KafkaStreaming,OnlineRecommender,StatisticsRecommender,offlineRecommender,recommender" />
   </component>
 </project>

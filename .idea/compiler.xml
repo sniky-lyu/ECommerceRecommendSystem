@@ -9,6 +9,7 @@
         <module name="DataLoader" />
         <module name="offlineRecommender" />
         <module name="businessServer" />
+        <module name="ALSOptimization" />
         <module name="KafkaStreaming" />
         <module name="ContentRecommender" />
         <module name="ItemCFRecommender" />

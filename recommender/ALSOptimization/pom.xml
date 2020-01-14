@@ -9,9 +9,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ItemCFRecommender</artifactId>
+    <artifactId>ALSOptimization</artifactId>
 
     <dependencies>
+        <!-- 计算余弦相似度时会用到 -->
+        <dependency>
+            <groupId>org.jblas</groupId>
+            <artifactId>jblas</artifactId>
+            <version>${jblas.version}</version>
+        </dependency>
+
         <!-- Spark的依赖引入 -->
         <dependency>
             <groupId>org.apache.spark</groupId>
@@ -20,6 +27,10 @@
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-sql_2.11</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-mllib_2.11</artifactId>
         </dependency>
         <!-- 引入Scala -->
         <dependency>
@@ -42,10 +53,11 @@
         </dependency>
     </dependencies>
 
-    <!-- ItemCFRecommender 带依赖jar包 -->
+    <!-- ALSOptimization 带依赖jar包 -->
     <build>
-        <finalName>ItemCFRecommender</finalName>
+        <finalName>ALSOptimization</finalName>
         <plugins>
+            <!-- ALSOptimization 带依赖jar包 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -53,7 +65,7 @@
                     <archive>
                         <manifest>
                             <!--TODO: 根据自己的 mainClass 的全路径写-->
-                            <mainClass>com.lyu.itemCF.ItemCFRecommender</mainClass>
+                            <mainClass>com.lyu.optimization.ALSOptimization</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -72,7 +84,4 @@
             </plugin>
         </plugins>
     </build>
-
-
-
 </project>

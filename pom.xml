@@ -21,8 +21,9 @@
         <log4j.version>1.2.17</log4j.version>
         <!--简单日志接口-->
         <slf4j.version>1.7.22</slf4j.version>
-        <!--mongodb-->
-        <mongodb-spark.version>2.0.0</mongodb-spark.version>
+        <!--mongodb: MongoDB Connector for Spark ~vs~ Spark Version, see:https://docs.mongodb.com/spark-connector/master/-->
+        <!-- mongo-spark-connector_2.11.2.1.5 ~~~ spark version 2.1.x -->
+        <mongodb-spark.version>2.1.5</mongodb-spark.version>
         <!--mongodb在scala中的driver 第三方开源工具 (也可使用新版官方driver：mongo-scala-driver_x.xx)-->
         <casbah.version>3.1.1</casbah.version>
         <!--redis-->
@@ -36,6 +37,10 @@
         <!--java线性代数的库，矩阵运算 余弦相似度 时会用到-->
         <!-- A fast linear algebra library for Java. -->
         <jblas.version>1.2.3</jblas.version>
+
+        <!-- TODO:不指定utf-8会报warn:Using platform encoding (UTF-8 actually) to copy filtered resources -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     </properties>
 
     <dependencies>
@@ -64,9 +69,17 @@
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>
         </dependency>
+
+        <!-- 不引用会警告warn: Multiple versions of scala libraries detected! -->
+        <dependency>
+            <groupId>org.json4s</groupId>
+            <artifactId>json4s-jackson_2.11</artifactId>
+            <version>3.5.0</version>
+        </dependency>
     </dependencies>
 
 
+    <!--TODO: 打包插件详见 https://segmentfault.com/a/1190000016237395-->
     <build>
         <!--声明并引入项目共有的插件-->
         <plugins>
@@ -92,11 +105,11 @@
                     <artifactId>maven-assembly-plugin</artifactId>
                     <version>3.0.0</version>
                     <executions>
-                        <execution>
+                        <execution>                     <!-- 配置执行器 -->
                             <id>make-assembly</id>
-                            <phase>package</phase>
+                            <phase>package</phase>      <!-- 绑定到package生命周期阶段上 -->
                             <goals>
-                                <goal>single</goal>
+                                <goal>single</goal>     <!-- 只运行一次 -->
                             </goals>
                         </execution>
                     </executions>

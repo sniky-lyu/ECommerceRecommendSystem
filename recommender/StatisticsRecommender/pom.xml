@@ -39,4 +39,35 @@
         </dependency>
     </dependencies>
 
+    <!-- StatisticsRecommender 带依赖jar包 -->
+    <build>
+        <finalName>StatisticsRecommender</finalName>    <!-- project name -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <!--  主类入口：根据自己的 mainClass 的全路径写-->
+                            <mainClass>com.lyu.statistic.StatisticsRecommender</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>    <!-- 内置的 Assembly Descriptor, 还有 bin,src,project三种内置 -->
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
