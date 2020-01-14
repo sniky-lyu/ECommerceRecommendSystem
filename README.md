@@ -16,6 +16,8 @@ ECommerceRecommendSystem
        -- ItemCFRecommender
 ```
 
+
+
 ### 2. Commander
 1).上传 `xxx-jar-with-dependencies.jar` 到服务器
 ```
@@ -82,24 +84,27 @@ Rating
 UserRecs
 >
 ```
-6). 测试完后关闭服务, 可写一个脚本一键关闭
+6). 测试完后关闭服务 hadoop, yarn, zookeeper, kafka, flume-log-kafka, mongo, redis, 可写一个脚本一键关闭
+
+
 
 
 ### 3. NOTES 
 1) spark-submit命令中若有路径参数则必须是 hdfs 中的路径，不是宿主机本地路径
 
 2) spark-submit 命令常用options如下：
-./bin/spark-submit \
-	--class com.lyu.test.WordCount \	# 全类名 .scala 程序中object名 右键 CopyReference
-	--master yarn \                     # 模式，3种 本地模式, yarn模式, spark集群模式
-	--deploy-mode cluster 
-	./upload-lyu/WordCount-jar-with-dependencies.jar \
-	/lyu/input/word.txt \			    # hdfs的文件目录 <----------------- 注意这里的文件路径是hdfs路径
-	/lyu/output/wordcount-output	    # hdfs的文件目录，wordcount-output在运行前必须不能存在
-
+    ```
+    ./bin/spark-submit \
+        --class com.lyu.test.WordCount \	            # 全类名 .scala 程序中object名 右键 CopyReference
+        --master yarn \                                 # 模式，3种 本地模式, yarn模式, spark集群模式
+        --deploy-mode cluster 
+        ./upload-lyu/WordCount-jar-with-dependencies.jar \
+        /lyu/input/word.txt \			    # hdfs的文件目录 <----------------- 注意这里的文件路径是hdfs路径
+        /lyu/output/wordcount-output	            # hdfs的文件目录，wordcount-output在运行前必须不能存在
+    ```
 3) 程序中设置的 .setMaster(...) 级别优先于 --master 级别，因此若使用 yarn 模式, 在程序代码中需要注释掉 .setMaster("local[*]"), 按照2)中的options设置运行模式参数
 
-4) 
+
 
 
 ### 4. TODO
