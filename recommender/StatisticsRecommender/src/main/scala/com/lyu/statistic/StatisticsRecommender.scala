@@ -14,7 +14,7 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
  * @param score
  * @param timestamp
  */
-case class Rating( userId: Int, productId: Int, score: Double, timestamp: Int )
+case class Rating( userId: Int, productId: Int, score: Double, timestamp: BigInt )
 
 /**
  * MongoDB 连接配置 样例类
