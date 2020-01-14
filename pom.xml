@@ -79,6 +79,7 @@
     </dependencies>
 
 
+    <!--TODO: 打包插件详见 https://segmentfault.com/a/1190000016237395-->
     <build>
         <!--声明并引入项目共有的插件-->
         <plugins>
@@ -104,11 +105,11 @@
                     <artifactId>maven-assembly-plugin</artifactId>
                     <version>3.0.0</version>
                     <executions>
-                        <execution>
+                        <execution>                     <!-- 配置执行器 -->
                             <id>make-assembly</id>
-                            <phase>package</phase>
+                            <phase>package</phase>      <!-- 绑定到package生命周期阶段上 -->
                             <goals>
-                                <goal>single</goal>
+                                <goal>single</goal>     <!-- 只运行一次 -->
                             </goals>
                         </execution>
                     </executions>

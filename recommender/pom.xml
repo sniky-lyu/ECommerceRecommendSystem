@@ -19,6 +19,7 @@
         <module>KafkaStreaming</module>
         <module>ContentRecommender</module>
         <module>ItemCFRecommender</module>
+        <module>ALSOptimization</module>
     </modules>
 
     <dependencyManagement>

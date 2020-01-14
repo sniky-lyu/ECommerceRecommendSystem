@@ -1,8 +1,6 @@
-package com.lyu.offline
+package com.lyu.optimization
 
 import breeze.numerics.sqrt
-import com.lyu.offline.OfflineRecommender.MONGODB_RATING_COLLECTION
-import com.mongodb.casbah.{MongoClient, MongoClientURI}
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.mllib.recommendation.{ALS, MatrixFactorizationModel, Rating}
 import org.apache.spark.rdd.RDD
@@ -11,10 +9,20 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 
 /**
  * @Description:基于ALS算法的协同过滤模型参数优化
- * @ClassName: ALSOptimization 
+ * @ClassName: ALSOptimization
  * @Author: klaus
  * @Date: 2019-12-14 14:11
  **/
+
+/**
+ * 定义 Rating 样例类
+ *
+ * @param userId
+ * @param productId
+ * @param score
+ * @param timestamp
+ */
+case class ProductRating( userId: Int, productId: Int, score: Double, timestamp: BigInt )
 
 /**
  * MongoDB 连接配置 样例类
@@ -33,7 +41,7 @@ case class MongoConfig( uri: String, db: String )
 case class OptedParams( impFeatureNum: Int, iterations: Int, lambda: Double, rmse: Double)
 
 object ALSOptimization {
-
+  val MONGODB_RATING_COLLECTION = "Rating"
   val OPTED_PARAMS_ALS = "OptedParams"
 
   def main(args: Array[String]): Unit = {
@@ -161,3 +169,4 @@ object ALSOptimization {
   }
 
 }
+

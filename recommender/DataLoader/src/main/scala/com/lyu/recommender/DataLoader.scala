@@ -53,8 +53,8 @@ case class MongoConfig( uri: String, db: String )
 
 object DataLoader {
   // 定义常量，如路径，mongoDB中存储的表名等
-  val PRODUCT_DATA_PATH = "G:\\demo\\DEMO_2\\ECommerceRecommendSystem\\recommender\\DataLoader\\src\\main\\resources\\products.csv"
-  val RATING_DATA_PATH = "G:\\demo\\DEMO_2\\ECommerceRecommendSystem\\recommender\\DataLoader\\src\\main\\resources\\ratings.csv"
+//  val PRODUCT_DATA_PATH = "G:\\demo\\DEMO_2\\ECommerceRecommendSystem\\recommender\\DataLoader\\src\\main\\resources\\products.csv"
+//  val RATING_DATA_PATH = "G:\\demo\\DEMO_2\\ECommerceRecommendSystem\\recommender\\DataLoader\\src\\main\\resources\\ratings.csv"
   val MONGODB_PRODUCT_COLLECTION = "Product"
   val MONGODB_RATING_COLLECTION = "Rating"
 
@@ -76,7 +76,9 @@ object DataLoader {
     import spark.implicits._
 
     // 加载数据 -- 从文件中加载数据  ^需要转义，反斜杠\也需要转义
-    val productRDD = spark.sparkContext.textFile(PRODUCT_DATA_PATH)
+//    val productRDD = spark.sparkContext.textFile(PRODUCT_DATA_PATH)
+    // TODO: args(0):val PRODUCT_DATA_PATH = "G:\\demo\\DEMO_2\\ECommerceRecommendSystem\\recommender\\DataLoader\\src\\main\\resources\\products.csv"
+    val productRDD = spark.sparkContext.textFile(args(0))
     val productDF = productRDD.map(item => {
       // 切分数据
       val attr = item.split("\\^")
@@ -85,7 +87,9 @@ object DataLoader {
       Product(attr(0).toInt, attr(1).trim, attr(4).trim, attr(5).trim, attr(6).trim)
     }).toDF()
 
-    val ratingRDD = spark.sparkContext.textFile(RATING_DATA_PATH)
+//    val ratingRDD = spark.sparkContext.textFile(RATING_DATA_PATH)
+    // TODO: args(1):val RATING_DATA_PATH = "G:\\demo\\DEMO_2\\ECommerceRecommendSystem\\recommender\\DataLoader\\src\\main\\resources\\ratings.csv"
+    val ratingRDD = spark.sparkContext.textFile(args(1))
     val ratingDF = ratingRDD.map(item => {
       val attr = item.split(",")
       Rating(attr(0).toInt, attr(1).toInt, attr(2).toDouble, attr(3).toInt)

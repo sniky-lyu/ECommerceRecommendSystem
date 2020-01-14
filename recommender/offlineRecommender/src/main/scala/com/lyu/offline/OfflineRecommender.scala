@@ -52,6 +52,10 @@ case class UserRecs( userId: Int, recs: Seq[Recommendation] )
  */
 case class ProductRecs( productId: Int,  recs: Seq[Recommendation])
 
+case class MongoConfig( uri: String, db: String )
+
+case class OptedParams( impFeatureNum: Int, iterations: Int, lambda: Double, rmse: Double)
+
 ///**
 // * 定义最优参数样例类
 // * @param impFeatureNum
